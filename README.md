@@ -15,7 +15,7 @@ The goals / steps of this project are the following:
 
 I started by reading in all the `vehicle` and `non-vehicle` images. This can be found in the code cell titled 'Data Exploration'. Some examples of the `car` and `non-car` classes can be seen under title "Visualizing some images in dataset" in my project file and can also be seen below:
 
-![alt text][image1]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 Once I explored the data that I will use in this project, the next step is to extract features from images. In this project, I used a combination of Histogram of Oriented Gradients (HOG) features, Histogram of color features and Spatial binning of color features. I started with using only HOG features for training my classifier but combining with other features did result in better results.
 
@@ -33,7 +33,7 @@ I have used scikit-image package that has a built in function to extract Histogr
 
 I have explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like in different color spaces. The code and examples for this visualization can be seen under title 'Visualizing HOG on an image from dataset'. Below are the examples using different color spaces and HOG parameters of `orientations=11`, `pixels_per_cell=(16, 16)` and `cells_per_block=(2, 2)`:
 
-![alt text][image2]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 Histogram of Color:
 
@@ -41,7 +41,7 @@ The code for this step can be found under title "Histogram of Color" in my proje
 
 Histogram of color in an image is useful in differentiating objects but this could wrongly classfy a non-car image as a car image when we solely rely on distribution of color values. Due to this reason I combined these features with other features to help differentiate the objects in an image. One example of the `car` and `non-car` class can be seen under title "Visualizing Hisogram of color on an image from dataset" in my project file and can also be seen below: 
 
-![alt text][image2]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 Spatial Binning of color:
 The code for this step can be found under title "Spatial Binning of color" in my project file. 
@@ -50,7 +50,7 @@ As seen in Histogram of color example above, template matching is not a particul
 
 While it could be cumbersome to include three color channels of a full resolution image, you can perform spatial binning on an image and still retain enough information to help in finding vehicles. In order to reduce the number of elements in feature vector I have used the size (16,16) and I could still retain enough information from the image. One example of the `car` and `non-car` class can be seen under title "Visualize spatial binning on an image from dataset" in my project file and can also be seen below: 
 
-![alt text][image2]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
@@ -72,13 +72,13 @@ In the section titled "Hog Sub-sampling Window Search" I used the method find_ca
 
 Visualizing find_cars on test images using a single window size can be found under title 'Visualizing find_cars on test images' and also can be seen below:
 
-![alt text][image3]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 I have explored several configurations of window sizes and positions, with various overlaps in the X and Y directions. For my final implementation I have used search windows with scales of 1 for small, 1.5 and 2.0 for medium, and 3.0 for large. 
 
 Bounding boxes drawn onto test images after applying sliding window using the above mentioned scales can be seen under title "Visualizing bounding boxes drawn onto test images" as well as below.
 
-![alt text][image3]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 The final algorithm calls find_cars for each window scale and the bounding boxes returned from each method call are aggregated. An overlap of 75% in the Y direction produced more redundant true positive detections. Only an appropriate vertical range of the image is considered for each window size (e.g. smaller range for smaller scales) to reduce the chance for false positives in areas where cars at that scale are unlikely to appear. The final implementation considers enough window locations, which proved to be robust enough to reliably detect vehicles while maintaining a high speed of execution.
 
@@ -86,15 +86,15 @@ The image above shows the bounding boxes drawn on test images returned by find_c
 
 As a true positive is usually accompanied by several positive detections, while false positives are usually accompanied by fewer detections, a combined heatmap and threshold is used to differentiate the two. The add_heat function increments the pixel value called as "heat" of an all-black image the size of the original image at the location of each detection rectangle. Areas encompassed by more overlapping rectangles are assigned higher levels of heat. The following images are the resulting heatmaps from the detections in the test images above.
 
-![alt text][image3]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 A threshold of 2 is applied to the heatmap, setting all pixels that don't exceed the threshold to zero. Examples can be seen under title "Visualizing heatmap after applying threshold on test images" as well as below:
 
-![alt text][image3]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 The scipy.ndimage.measurements.label() function collects spatially contiguous areas of the heatmap and assigns each a label. Examples can be seen under title "Visualizing labels on test images" as well as below:
 
-![alt text][image3]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 Based on the labels detected above, final detection area is set to the extremities of each identified label. Examples can be seen under title "Visualizing boxes drawn for labels" as well as below:
 
@@ -102,13 +102,15 @@ Based on the labels detected above, final detection area is set to the extremiti
 
 Ultimately I searched on 4 scales using LUV 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result.  Here are some example images:
 
-![alt text][image4]
+![Screenshot](./output_images/all_chessboards.JPG)
 
 ### Video Implementation
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (somewhat wobbly or unstable bounding boxes are ok as long as you are identifying the vehicles most of the time with minimal false positives.)
 
 Here's a [link to my video result](./project_video.mp4)
+
+Here's a [link to my video result combined with Lane detection pipeline](./project_video.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
@@ -119,5 +121,9 @@ The code for processing frames of video is contained in the cell titled "Pipelin
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+The major challenge of my project work was tuning the parameters which took a lot of my time. The pipeline is probably most likely to fail in cases where vehicles don't resemble those in the training dataset, but lighting and environmental conditions might also play a role. I believe it is possible to improve the classifier by additional data augmentation, classifier parameters tuning etc.
+
+Also, producing a very high accuracy classifier and maximizing window overlap might improve the per-frame accuracy to the point that integrating detections from previous frames is unnecessary (and oncoming traffic is correctly labeled), but it would require a massive processing power. I believe this could be offset with more intelligent tracking strategies like convolutional neural network or by determining vehicle location and speed to predict its location in subsequent frames.
+
+
 
