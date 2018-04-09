@@ -119,7 +119,7 @@ Here's a [link to my test file video result](./test_video_out.mp4)
 
 Here's a [link to my project file video result](./project_video_out.mp4)
 
-Here's a [link to my video result combined with Lane detection pipeline](./project_video_output2.mp4)
+Here's a [link to my video result combined with Lane detection pipeline](./Lane_vehicle_detection_out.mp4)
 
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
