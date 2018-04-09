@@ -65,7 +65,9 @@ The final parameters chosen were: LUV colorspace, 11 orientations, 16 pixels per
 
 In the section titled "Preparing data for classifier" I extracted all the features from dataset by combining HOG features, Histogram of color features, Spatial binning of color which resulted in a feature vector of length 2052. I then defined labels for features, shuffled the data, split the data into training and test data and normalised features.
 
-Once I have the data for the calssifier, in the section titled "Train a Classifier" I trained a linear SVM with C=0.01 and using all the features extracted as explained in above steps and was able to achieve a test accuracy of 98.67%. With default parameters for linear SVM my test accuracy was 98.42%.
+Once I have the data for the calssifier, in the section titled "Train a classifier using Linear SVM" I trained a linear SVM with C=0.01 and using all the features extracted as explained in above steps and was able to achieve a test accuracy of 98.67%. With default parameters for linear SVM my test accuracy was 98.42%.
+
+I also experimented with GridSearchCV with parameters C= 0.01,1,10 and gamma = 0.01 using linear and rbf kernels. This resulted in longer training times and did not result in any better accuracy compared to Linear SVM. The code for this can be found under title 'Train a classifier using GridSearchCV'.
 
 ### Sliding Window Search
 
