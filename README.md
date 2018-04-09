@@ -79,7 +79,7 @@ Visualizing find_cars on test images using a single window size can be found und
 
 ![Screenshot](./output_images/single_window.JPG)
 
-I have explored several configurations of window sizes and positions, with various overlaps in the X and Y directions. For my final implementation I have used search windows with scales of 1 for small, 1.5 and 2.0 for medium, and 3.0 for large. 
+I have explored several configurations of window sizes and positions, with various overlaps in the X and Y directions. For my final implementation I have used search windows with scales of 1 for small, 1.5 and 2.0 for medium, and 3.0 for large. The code for this implementation can be found under title "Sliding window with multi scale search".
 
 Bounding boxes drawn onto test images after applying sliding window using the above mentioned scales can be seen under title "Visualizing bounding boxes drawn onto test images" as well as below.
 
