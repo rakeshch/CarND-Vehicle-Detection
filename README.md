@@ -34,8 +34,8 @@ I have used scikit-image package that has a built in function to extract Histogr
 
 I have explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).  I grabbed random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like in different color spaces. The code and examples for this visualization can be seen under title 'Visualizing HOG on an image from dataset'. Below are the examples using different color spaces and HOG parameters of `orientations=11`, `pixels_per_cell=(16, 16)` and `cells_per_block=(2, 2)`:
 
-![Screenshot](./output_images/car_hog_or8_pix8_cell2.JPG)
-![Screenshot](./output_images/ncar_hog_or8_pix8_cell2.JPG)
+![Screenshot](./output_images/car_hog.JPG)
+![Screenshot](./output_images/ncar_hog.JPG)
 
 #### Histogram of Color:
 
