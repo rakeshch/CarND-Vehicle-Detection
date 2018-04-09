@@ -15,6 +15,11 @@ The goals / steps of this project are the following:
 
 I started by reading in all the `vehicle` and `non-vehicle` images. This can be found in the code cell titled 'Data Exploration'. Some examples of the `car` and `non-car` classes can be seen under title "Visualizing some images in dataset" in my project file and can also be seen below:
 
+Number of car images:  8792
+Number of Non-car images:  8968
+Size of each image:  (64, 64, 3)
+Data type:  float32
+
 ![Screenshot](./output_images/cars.JPG)
 ![Screenshot](./output_images/notcars.JPG)
 
