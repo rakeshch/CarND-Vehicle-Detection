@@ -20,7 +20,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images. This can be 
 
 Once I explored the data that I will use in this project, the next step is to extract features from images. In this project, I used a combination of Histogram of Oriented Gradients (HOG) features, Histogram of color features and Spatial binning of color features. I started with using only HOG features for training my classifier but combining with other features did result in better results.
 
-Histogram of Orieneted Gradients (HOG): 
+#### Histogram of Oriented Gradients (HOG): 
 
 The code for this step can be found under title "Histogram of Oriented Gradients (HOG)" in my project file. 
 
@@ -37,7 +37,7 @@ I have explored different color spaces and different `skimage.hog()` parameters 
 ![Screenshot](./output_images/car_hog_or8_pix8_cell2.JPG)
 ![Screenshot](./output_images/ncar_hog_or8_pix8_cell2.JPG)
 
-Histogram of Color:
+#### Histogram of Color:
 
 The code for this step can be found under title "Histogram of Color" in my project file. 
 
@@ -45,7 +45,8 @@ Histogram of color in an image is useful in differentiating objects but this cou
 
 ![Screenshot](./output_images/hist_features.JPG)
 
-Spatial Binning of color:
+#### Spatial Binning of color:
+
 The code for this step can be found under title "Spatial Binning of color" in my project file. 
 
 As seen in Histogram of color example above, template matching is not a particularly robust method for finding vehicles unless you know exactly what your target object looks like. However, raw pixel values are still quite useful to include in your feature vector in searching for cars.
@@ -56,7 +57,7 @@ While it could be cumbersome to include three color channels of a full resolutio
 
 #### 2. Explain how you settled on your final choice of HOG parameters.
 
-Parameter tuning was the most time taking and fun part of this project. I tried various combinations of parameters with RGB, HSV, YCrCb, HLS, YUV, LUV color spaces and HOG parameters with `orientations` values of 6,7,8,9,11,12,16 and `pixels_per_cell` values of (8, 8),(16, 16) and `cells_per_block` values of (2,2), (3,3), (4,4). I settled on my final choice of HOG parameters based upon the performance of the SVM classifier. I considered not only the accuracy with which the classifier made predictions on the test dataset, but also the speed at which the classifier is able to make predictions.
+Parameter tuning was the most time taking part of this project which took almost 30 hours or may be more. I tried various combinations of parameters with RGB, HSV, YCrCb, HLS, YUV, LUV color spaces and HOG parameters with `orientations` values of 6,7,8,9,11,12,16 and `pixels_per_cell` values of (8, 8),(16, 16) and `cells_per_block` values of (2,2), (3,3), (4,4). I settled on my final choice of HOG parameters based upon the performance of the SVM classifier. I considered not only the accuracy with which the classifier made predictions on the test dataset, but also the speed at which the classifier is able to make predictions.
 
 The final parameters chosen were: LUV colorspace, 11 orientations, 16 pixels per cell, 2 cells per block, and ALL channels of the colorspace. Choosing a value of 16 for pixels_per_cell parameter produced a roughly ten-fold increase in execution speed compared to using 8 with minimal cost to accuracy. 
 
@@ -98,7 +99,7 @@ The scipy.ndimage.measurements.label() function collects spatially contiguous ar
 
 ![Screenshot](./output_images/labels.JPG)
 
-Based on the labels detected above, final detection area is set to the extremities of each identified label. Examples can be seen under title "Visualizing boxes drawn for labels" as well as below:
+Based on the labels detected above, final detection area is set to the extremities of each identified label. Examples can be seen under title "Visualizing boxes drawn for labels" in the project file.
 
 #### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
 
@@ -106,7 +107,9 @@ Ultimately I searched on 4 scales using LUV 3-channel HOG features plus spatiall
 
 ![Screenshot](./output_images/final.JPG)
 
-![Screenshot](./output_images/combined.JPG)
+Below is the result after combining the vehicle detection pipeline with lane detecion pipleline. Detailed workflow for Advanced lane finding can be found [here](https://github.com/rakeshch/Advance-Lane-Finding).
+
+![Screenshot](./output_images/combined_all.JPG)
 
 ### Video Implementation
 
@@ -121,13 +124,13 @@ Here's a [link to my video result combined with Lane detection pipeline](./proje
 
 #### 2. Describe how (and identify where in your code) you implemented some kind of filter for false positives and some method for combining overlapping bounding boxes.
 
-The code for processing frames of video is contained in the cell titled "Pipeline to detect cars in an image" and is identical to the code for processing a single image described above, with the exception of storing the detections (returned by find_cars) from the previous 10 frames of video using the prev_bboxes parameter from a class called Detector. 
+The code for processing every frame of video is contained in the cell titled "Pipeline to detect cars in an image" and is identical to the code for processing a single image described above, with the exception of storing the detections (returned by find_cars) from the previous 10 frames of video using the prev_bboxes parameter from a class called Detector. 
 
 ### Discussion
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The major challenge of my project work was tuning the parameters which took a lot of my time. The pipeline is probably most likely to fail in cases where vehicles don't resemble those in the training dataset, but lighting and environmental conditions might also play a role. I believe it is possible to improve the classifier by additional data augmentation, classifier parameters tuning etc.
+The major challenge of my project work was tuning the parameters which took a lot of my time. The pipeline is probably most likely to fail in cases where vehicles don't resemble those in the training dataset, but lighting and environmental conditions might also play a role. I believe it is possible to improve the classifier by additional data augmentation, classifier parameters tuning etc to eliminate further false positives in a frame.
 
 Also, producing a very high accuracy classifier and maximizing window overlap might improve the per-frame accuracy to the point that integrating detections from previous frames is unnecessary (and oncoming traffic is correctly labeled), but it would require a massive processing power. I believe this could be offset with more intelligent tracking strategies like convolutional neural network or by determining vehicle location and speed to predict its location in subsequent frames.
 
