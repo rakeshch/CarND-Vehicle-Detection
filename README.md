@@ -1,5 +1,7 @@
 **Vehicle Detection Project**
 
+In this project, we detect in a video pipeline, potential boxes, via a sliding window, that may contain a vehicle by using a Support Vector Machine Classifier for prediction to create a heat map. The heat map history is then used to filter out false positives before identification of vehicles by drawing a bounding box around it.
+
 The goals / steps of this project are the following:
 
 * Perform a Histogram of Oriented Gradients (HOG) feature extraction on a labeled training set of images and train a classifier Linear SVM classifier
