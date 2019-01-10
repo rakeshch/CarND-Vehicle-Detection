@@ -110,7 +110,7 @@ Ultimately I searched on 4 scales using LUV 3-channel HOG features plus spatiall
 
 ![Screenshot](./output_images/final.JPG)
 
-Below is the result after combining the vehicle detection pipeline with lane detecion pipleline. Detailed workflow for Advanced lane finding can be found [here](https://github.com/rakeshch/Advance-Lane-Finding).
+Below is the final result after combining the vehicle detection pipeline with lane detecion pipleline. Detailed workflow for Advanced lane finding can be found [in my earlier project](https://github.com/rakeshch/Advance-Lane-Finding).
 
 ![Screenshot](./output_images/combined_all.JPG)
 
